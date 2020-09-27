@@ -10,7 +10,7 @@
     Backend:
         -Java Servlets
         -Freemarker
-        -JDBC MySQL
+        -MySQL
 
 Концепция разработки: MVC
 
