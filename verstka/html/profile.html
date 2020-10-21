@@ -1,55 +1,110 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <meta charset="utf-8">
-  <title>CarSharing</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery-1.7.min.js"></script>
- </head>
- <body class="bg-info">
-  <img class="img-fluid" src="../pictures/main_picture.jpg"/>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="index.html">CarSharing</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<head>
+    <meta charset="utf-8">
+    <title>CarSharing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+            crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.7.min.js"></script>
+    <style>
+        #main {
+            background-color: #f2f2f2;
+            padding: 20px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-radius: 4px;
+            border-bottom: 4px solid #ddd;
+        }
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="catalog.html">Каталог</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">О нас</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Отзывы</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Корзина</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="">Профиль<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Города
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Казань</a>
-          <a class="dropdown-item" href="#">Москва</a>
-          <a class="dropdown-item" href="#">Санкт-Петербург</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModal"href="#">Войти</a>
-      </li>
-    </ul>
-</div>
+        #real-estates-detail #author img {
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            -ms-border-radius: 100%;
+            -o-border-radius: 100%;
+            border-radius: 100%;
+            border: 5px solid #ecf0f1;
+            margin-bottom: 10px;
+        }
+
+        #real-estates-detail .sosmed-author i.fa {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #bdc3c7;
+            color: #bdc3c7;
+            padding-top: 6px;
+            margin-top: 10px;
+        }
+
+        .panel-default .panel-heading {
+            background-color: #fff;
+        }
+
+        #real-estates-detail .slides li img {
+            height: 450px;
+        }
+    </style>
+
+</head>
+<body class="bg-info">
+<img class="img-fluid" src="../pictures/main_picture.jpg"/>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">CarSharing</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="catalog.html">Каталог</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">О нас</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Отзывы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Корзина</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="">Профиль<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Города
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Казань</a>
+                    <a class="dropdown-item" href="#">Москва</a>
+                    <a class="dropdown-item" href="#">Санкт-Петербург</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="#">Войти</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
 </nav>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -62,15 +117,17 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form class="needs-validation" id="signInForm"novalidate>
+                    <form class="needs-validation" id="signInForm" novalidate>
                         <div class="form-group">
-                            <label for="exampleInputEmail">Email</label>
-                            <input type="email" class="form-control" id="userEmail" name="email" aria-descibdby="emailHelp" placeholder="Email" required>
+                            <label for="userEmail">Email</label>
+                            <input type="email" class="form-control" id="userEmail" name="email"
+                                   aria-descibdby="emailHelp" placeholder="Email" required>
                             <small id="emailHelp" class="form-text text-muted">Введите email</small>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPass">Пароль</label>
-                            <input type="password" class="form-control" name="password" id="userPassword" placeholder="Пароль" required>
+                            <label for="userPassword">Пароль</label>
+                            <input type="password" class="form-control" name="password" id="userPassword"
+                                   placeholder="Пароль" required>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
@@ -86,30 +143,89 @@
         </div>
     </div>
 </div>
- </body>
+<div class="mt-5 bg-light container" rounded>
+    <div class="row">
+        <div class="col-md-5">
+            <h3 class="pl-4">Имя пользователя</h3>
+            <img class="rounded-circle" width="70%" src="../pictures/porche_911.jpg"></img>
+        </div>
+        <div class="col-md-7">
+            <form>
+                <div class="fields">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" value="" placeholder="" required disabled>
+                    <span class="dot">*</span>
+                </div>
+                <div class="fields">
+                    <label for="surname">Фамилия:</label>
+                    <input type="text" id="surname" value="" placeholder="" required disabled>
+                    <span class="dot">*</span>
+                </div>
+                <div class="fields">
+                    <label for="email">E-mail:</label>
+                    <input type="text" id="email" value="" placeholder="" required disabled>
+                    <span class="dot">*</span>
+                </div>
+                <div class="fields">
+                    <label for="phone_number">Номер телефона:</label>
+                    <input type="text" id="phone_number" value="" placeholder="" required disabled>
+                    <span class="dot">*</span>
+                </div>
+                <div class="fields">
+                    <label for="pass1">Пароль:</label>
+                    <input type="password" id="pass1" value="" disabled>
+                    <span class="dot">*</span>
+                </div>
+                <button type="button" onclick="enableForm()" name="button1" id="enable_btn">Изменить данные профиля</button>
+                <button type="submit" onclick="disabeleForm()" name="button2" id="disable_btn" disabled>Подтвердить данные</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
 <script>
-     $('#signInForm').validate({
-            rules: {
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 8,
-                    }
+    $('#signInForm').validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
             },
-            messages: {
-                email: {
-                    required: 'Заполните поле',
-                    email: 'Введите корректный email'
-                },
-                password: {
-                    required: 'Заполните поле',
-                    minlength: jQuery.validator.format('Минимальная длинна {0} символов'),
-                }
+            password: {
+                required: true,
+                minlength: 8,
             }
-         });
+        },
+        messages: {
+            email: {
+                required: 'Заполните поле',
+                email: 'Введите корректный email'
+            },
+            password: {
+                required: 'Заполните поле',
+                minlength: jQuery.validator.format('Минимальная длинна {0} символов'),
+            }
+        }
+    });
+</script>
+<script>
+    function enableForm() {
+        document.getElementById('phone_number').removeAttribute('disabled');
+        document.getElementById('name').removeAttribute('disabled');
+        document.getElementById('surname').removeAttribute('disabled');
+        document.getElementById('email').removeAttribute('disabled');
+        document.getElementById('pass1').removeAttribute('disabled');
+        document.getElementById('disable_btn').removeAttribute('disabled');
+        document.getElementById('enable_btn').setAttribute('disabled', '');
+    }
+    function disabeleForm() {
+        document.getElementById('phone_number').setAttribute('disabled', '');
+        document.getElementById('name').setAttribute('disabled', '');
+        document.getElementById('surname').setAttribute('disabled', '');
+        document.getElementById('email').setAttribute('disabled', '');
+        document.getElementById('pass1').setAttribute('disabled', '');
+        document.getElementById('enable_btn').removeAttribute('disabled');
+        document.getElementById('disable_btn').setAttribute('disabled', '');
+    }
 </script>
 </html>
