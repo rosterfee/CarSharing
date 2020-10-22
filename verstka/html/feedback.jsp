@@ -17,11 +17,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
             integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
             crossorigin="anonymous"></script>
+    <style>
+        .round {
+            border-radius: 100px;
+            border: 3px solid green;
+            box-shadow: 0 0 7px #666;
+        }
+    </style>
+    <link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 <body class="bg-info">
 <img class="img-fluid" src="../pictures/main_picture.jpg"/>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">CarSharing</a>
+    <a class="navbar-brand" href="#">CarSharing</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,8 +44,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="about_us.html">О нас</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Отзывы</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Отзывы<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Корзина</a>
@@ -62,57 +71,46 @@
         </form>
     </div>
 </nav>
-<div class="row ml-1 mt-5 mr-1">
-    <div class="col-md-6">
-        <div id="carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="img-fluid" src="../pictures/gtr.jpg">
-                </div>
-                <div class="carousel-item">
-                    <img class="img-fluid" src="../pictures/gtr_1.jpg">
-                </div>
-                <div class="carousel-item">
-                    <img class="img-fluid" src="../pictures/gtr_2.jpg">
+<section class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <textarea class="form-control" rows="2" placeholder="Добавьте Ваш отзыв" name="comment"></textarea>
+                    <div class="mar-top clearfix">
+                        <button class="btn btn-sm btn-primary pull-right mt-4" type="submit"><i
+                                class="fa fa-pencil fa-fw"></i> Добавить
+                        </button>
+                        <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
+                        <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
+                        <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a>
+                    </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Предыдущий</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Следующий</span>
-            </a>
+
+<!--            <% for (int i = 0; i < 3; i++) {%>-->
+            <div class="panel">
+                <div class="panel-body">
+                    <!-- Содержание Новостей -->
+                    <!--===================================================-->
+                    <div class="media-block">
+                        <a class="media-left" href="#"><img class="img-circle img-sm" alt="Профиль пользователя" style="width: 75px"
+                                                            src="https://bootstraptema.ru/snippets/icons/2016/mia/1.png"></a>
+                        <div class="media-body">
+                            <div class="mar-btm">
+                                <a href="#" class="btn-link text-semibold media-heading box-inline">Максим</a>
+                                <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> - 19-06-2016</p>
+                            </div>
+                            <p>Секция с комментариями для сайта с подключенным Bootstrap!!!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <%}%>-->
         </div>
     </div>
-    <div class="col-md-6 mt-5">
-        <p class="text-center  bg-light rounded">
-            <big>Nissan GT-R — суперкар, выпускаемый компанией Nissan Motor.
-                Представлен в качестве серийной модели на Токийском автосалоне 24 октября 2007 года, продажи начались в
-                2008 году в Японии,
-                затем в США и Европе. В отличие от предшественников, выпускавшихся только для JDM и ограниченным тиражом
-                поставлявшихся
-                в Великобританию, имеется вариант с левым рулём. И этот автомобиль может оказаться под вашем управлением
-                всего в пару кликов.
-            </big>
-        </p>
-        <ul class="text-left bg-light pl-2 rounded list-unstyled">
-            <li><big>Краткая справка:</big></li>
-            <ul>
-                <li>Мощьность : 600 л.с.</li>
-                <li>Максимальная скорость : 315 км/ч</li>
-                <li>Разгон до 100 : 2.8 сек</li>
-            </ul>
-        </ul>
-        <button type="button" class="btn btn-outline-light btn-lg btn-block"><a class="nav-link text-light" href="#">Заказать</a>
-        </button>
-    </div>
-</div>
-<div class="row ml-1 mr-1">
-    <div class="col-md-6">
-        <h2 class="bg-light rounded text-center">Nissan GT-R</h2>
-    </div>
+</section>
 </div>
 </body>
 </html>

@@ -17,6 +17,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
             integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
             crossorigin="anonymous"></script>
+    <style>
+        .catalog-product {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 50px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+    </style>
 </head>
 <body class="bg-info">
 <img class="img-fluid" src="../pictures/main_picture.jpg"/>
@@ -147,74 +156,17 @@
         </form>
     </div>
 </nav>
-<div class="row ml-1 mt-5 mr-1">
-    <div class="col-md-13 card-deck">
-        <div class="card">
+<div class="catalog-content">
+    <div class="catalog-product">
+        <%for (int i = 0; i < 50; i++) {%>
+        <div class="card" style="width: 25%">
             <a href="car_profile.html"><img class="card-img-top" src="../pictures/gtr.jpg"></img></a>
             <div class="card-body text-center">
                 Nissan GTR
             </div>
         </div>
-        <div class="card">
-            <img class="card-img-top" src="../pictures/porche_911.jpg"></img>
-            <div class="card-body text-center">
-                Porsche 911 GT-3
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="../pictures/bmw_m5.jpg"></img>
-            <div class="card-body text-center">
-                BMW M5 F90
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="../pictures/panamera.jpg"></img>
-            <div class="card-body text-center">
-                Porsche Panamera Turbo S
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row ml-1 mt-5 mr-1">
-    <div class="col-md-13 card-deck">
-        <div class="card" id="card">
-            <img class="card-img-top" src="../pictures/370z.jpg"></img>
-            <div class="card-body text-center">
-                Nissan 370Z
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="../pictures/porsche_taycan.jpg"></img>
-            <div class="card-body text-center">
-                Porsche Taycan
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="../pictures/bmw_x6m.jpg"></img>
-            <div class="card-body text-center">
-                BMW X6M
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="../pictures/porsche_boxter.jpg"></img>
-            <div class="card-body text-center">
-                Porsche Boxter
-            </div>
-        </div>
+        <%}%>
     </div>
 </div>
 </body>
-<script>
-    for (var i = 0; i < 4; ++i) {
-        document.write("<div class='row ml-1 mr-1'>");
-        for (var j = 0; j < 4; ++j) {
-            document.write("<div class='col-md-13 card-deck mt-5'>");
-            for (var k = 0; k < 4; ++k) {
-                document.write("<div class='card'><img class='card-img-top' src='../pictures/porsche_boxter.jpg'></img><div class='card-body text-center'>Porsche Boxter</div></div>");
-            }
-            document.write("</div>");
-        }
-        document.write("</div>");
-    }
-</script>
 </html>
