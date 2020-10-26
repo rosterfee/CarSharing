@@ -25,6 +25,10 @@
             margin-top: 30px;
             margin-bottom: 40px;
         }
+        .filters {
+            display: flex;
+            flex-direction: row;
+        }
     </style>
 </head>
 <body class="bg-info">
