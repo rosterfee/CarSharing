@@ -120,6 +120,53 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown9" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Объем двигателя
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown9">
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck10" name="before_one">
+                        <label class="form-check-label" for="defaultCheck10">
+                            до 1.0 л.
+                        </label>
+                    </div>
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck11" name="from_one_to_two_half">
+                        <label class="form-check-label" for="defaultCheck11">
+                            от 1.0 до 2.5 л.
+                        </label>
+                    </div>
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck12"
+                               name="two_half_plus">
+                        <label class="form-check-label" for="defaultCheck12">
+                            2.5+ л.
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown13" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Коробка передач
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown13">
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck14" name="mechanic">
+                        <label class="form-check-label" for="defaultCheck14">
+                            Механика
+                        </label>
+                    </div>
+                    <div class="form-check dropdown-item">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck15" name="automatic">
+                        <label class="form-check-label" for="defaultCheck15">
+                            Автомат
+                        </label>
+                    </div>
+                </div>
+            </li>
         </ul>
         <button type="button" class="btn btn-info">Применить</button>
     </form>
