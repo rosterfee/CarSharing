@@ -19,6 +19,7 @@
             integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
             crossorigin="anonymous"></script>
 </head>
+
 <body class="bg-info">
 <img class="img-fluid" src="../pictures/main_picture.jpg" alt=""/>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -39,15 +40,22 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Отзывы</a>
             </li>
+
+            <#if user??>
             <li class="nav-item">
                 <a class="nav-link" href="#">Корзина</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Профиль</a>
             </li>
+            </#if>
+
+            <#if admin??>
             <li class="nav-item">
                 <a class="nav-link" href="#">Добавить авто</a>
             </li>
+            </#if>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -60,7 +68,11 @@
                 </div>
             </li>
         </ul>
+
+        <#if user??>
         <button type="button" class="btn btn-danger mr-3" href="#">Выйти</button>
+        </#if>
+
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

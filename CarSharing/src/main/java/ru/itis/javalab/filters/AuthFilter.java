@@ -3,13 +3,11 @@ package ru.itis.javalab.filters;
 import ru.itis.javalab.services.UsersService;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/profile", "/my_order"})
 public class AuthFilter implements Filter {
 
     UsersService usersService;
@@ -31,7 +29,7 @@ public class AuthFilter implements Filter {
             Cookie[] cookies = httpServletRequest.getCookies();
             Cookie userCookie = null;
             for (Cookie cookie: cookies) {
-                if (cookie.getName().equals("login")) {
+                if (cookie.getName().equals("UsersLogin")) {
                     userCookie = cookie;
                     break;
                 }
@@ -39,13 +37,14 @@ public class AuthFilter implements Filter {
             if (userCookie != null) {
                 httpServletRequest.getSession().setAttribute("user",
                         usersService.getUserByLogin(userCookie.getValue()));
+                filterChain.doFilter(httpServletRequest, httpServletResponse);
             }
             else {
                 httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/sign_in");
             }
         }
         else {
-            filterChain.doFilter(servletRequest, servletResponse);
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
     }
 

@@ -43,13 +43,12 @@ public class SignInServlet extends HttpServlet {
 
         Optional<User> user = usersService.getSuchUserForSignIn(login, hashedPassword);
         if (user.isPresent()) {
+
             req.getSession().setAttribute("user", user.get());
 
             if (req.getParameter("remember_me") != null) {
                 resp.addCookie(new Cookie("usersLogin", login));
             }
-
-            req.getSession().setAttribute("user", user);
 
             resp.sendRedirect("/main");
         }
