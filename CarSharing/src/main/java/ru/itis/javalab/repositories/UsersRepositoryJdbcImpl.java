@@ -20,7 +20,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
             .build();
 
     //language=sql
-    private static final String SQL_SELECT_BY_LOGIN_AND_PASSWORD =
+    private static final String SQL_SELECT_SUCH_USER_FOR_SIGN_IN =
             "select * from account where login = ? and password = ?";
 
     //language=sql
@@ -29,7 +29,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
                     "values (?, ?, ?, ?, ?, ?)";
 
     //language=sql
-    private static final String SQL_SELECT_SUCH_USER = "select * from account where login = ? or email = ? " +
+    private static final String SQL_SELECT_SUCH_USER_FOR_REGISTRATION = "select * from account where login = ? or email = ? " +
             "or phone = ?";
 
 
@@ -50,14 +50,6 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
 
     @Override
-    public Optional<User> findUserByLoginAndPassword(String login, String password) {
-
-        User user = template.queryForObject(SQL_SELECT_BY_LOGIN_AND_PASSWORD, userRowMapper, login, password);
-
-        return Optional.ofNullable(user);
-    }
-
-    @Override
     public List<User> findAll() {
         return null;
     }
@@ -74,9 +66,15 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     @Override
-    public Optional<User> findSuchUser(User entity) {
-        User user = template.queryForObject(SQL_SELECT_SUCH_USER, userRowMapper,
+    public Optional<User> findSuchUserForRegistration(User entity) {
+        User user = template.queryForObject(SQL_SELECT_SUCH_USER_FOR_REGISTRATION, userRowMapper,
                 entity.getLogin(), entity.getEmail(), entity.getPhone());
+        return Optional.ofNullable(user);
+    }
+
+    @Override
+    public Optional<User> findSuchUserForSignIn(String login, String password) {
+        User user = template.queryForObject(SQL_SELECT_SUCH_USER_FOR_SIGN_IN, userRowMapper, login, password);
         return Optional.ofNullable(user);
     }
 

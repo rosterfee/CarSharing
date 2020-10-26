@@ -63,9 +63,9 @@ public class RegistrationServlet extends HttpServlet {
                     .password(MD5PasswordHasher.getHashPassword(password))
                     .build();
 
-            if (!usersService.getSuchUser(newUser).isPresent()) {
+            if (!usersService.getSuchUserForRegistration(newUser).isPresent()) {
                 usersService.saveUser(newUser);
-                req.getRequestDispatcher("pages/sign_in.html").forward(req, resp);
+                resp.sendRedirect("/sign_in");
             }
             else {
                 req.setAttribute("suchUser", true);

@@ -20,17 +20,17 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<User> getUserByLoginAndPassword(String login, String password) {
-        return usersRepository.findUserByLoginAndPassword(login, password);
-    }
-
-    @Override
     public void saveUser(User entity) {
         usersRepository.save(entity);
     }
 
     @Override
-    public Optional<User> getSuchUser(User entity) {
-        return usersRepository.findSuchUser(entity);
+    public Optional<User> getSuchUserForRegistration(User entity) {
+        return usersRepository.findSuchUserForRegistration(entity);
+    }
+
+    @Override
+    public Optional<User> getSuchUserForSignIn(String login, String password) {
+        return usersRepository.findSuchUserForSignIn(login, password);
     }
 }

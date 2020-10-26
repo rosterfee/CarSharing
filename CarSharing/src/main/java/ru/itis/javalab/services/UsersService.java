@@ -8,9 +8,9 @@ public interface UsersService {
 
     List<User> getAllUsers();
 
-    Optional<User> getUserByLoginAndPassword(String login, String password);
-
     void saveUser(User entity);
 
-    Optional<User> getSuchUser(User entitu);
+    Optional<User> getSuchUserForRegistration(User entity);
+
+    Optional<User> getSuchUserForSignIn(String login, String password);
 }
