@@ -28,13 +28,11 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("pages/registration.html").forward(req, resp);
+        req.getRequestDispatcher("freemarker/registration.ftl").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.setCharacterEncoding("UTF-8");
 
         String phone = req.getParameter("phone");
         String password = req.getParameter("password");
@@ -51,7 +49,7 @@ public class RegistrationServlet extends HttpServlet {
         }
 
         if ((boolean) req.getAttribute("badPhoneNumber") || (boolean) req.getAttribute("badPassword")) {
-            req.getRequestDispatcher("pages/registration.html").forward(req, resp);
+            req.getRequestDispatcher("freemarker/registration.ftl").forward(req, resp);
         }
         else {
             User newUser = User.builder()
@@ -69,7 +67,7 @@ public class RegistrationServlet extends HttpServlet {
             }
             else {
                 req.setAttribute("suchUser", true);
-                req.getRequestDispatcher("pages/registration.html").forward(req, resp);
+                req.getRequestDispatcher("freemarker/registration.ftl").forward(req, resp);
             }
         }
     }

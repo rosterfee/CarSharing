@@ -13,4 +13,6 @@ public interface UsersRepository extends CrudRepository<User> {
 
     Optional<User> findSuchUserForSignIn(String login, String password);
 
+    Optional<User> findUserByLogin(String login);
+
 }

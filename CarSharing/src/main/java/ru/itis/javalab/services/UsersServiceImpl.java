@@ -33,4 +33,9 @@ public class UsersServiceImpl implements UsersService {
     public Optional<User> getSuchUserForSignIn(String login, String password) {
         return usersRepository.findSuchUserForSignIn(login, password);
     }
+
+    @Override
+    public Optional<User> getUserByLogin(String login) {
+        return usersRepository.findUserByLogin(login);
+    }
 }

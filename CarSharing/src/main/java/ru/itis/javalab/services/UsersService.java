@@ -13,4 +13,6 @@ public interface UsersService {
     Optional<User> getSuchUserForRegistration(User entity);
 
     Optional<User> getSuchUserForSignIn(String login, String password);
+
+    Optional<User> getUserByLogin(String login);
 }

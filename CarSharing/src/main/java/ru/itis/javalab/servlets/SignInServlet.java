@@ -29,7 +29,7 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("pages/sign_in.html").forward(req, resp);
+        req.getRequestDispatcher("freemarker/sign_in.ftl").forward(req, resp);
     }
 
     @Override
@@ -45,14 +45,17 @@ public class SignInServlet extends HttpServlet {
         if (user.isPresent()) {
             req.getSession().setAttribute("user", user.get());
 
-            resp.addCookie(new Cookie("usersLogin", login));
+            if (req.getParameter("remember_me") != null) {
+                resp.addCookie(new Cookie("usersLogin", login));
+            }
+
             req.getSession().setAttribute("user", user);
 
             resp.sendRedirect("/main");
         }
         else {
             req.setAttribute("badLoginOrPassword", true);
-            req.getRequestDispatcher("pages/sign_in.html").forward(req, resp);
+            req.getRequestDispatcher("/sign_in.ftl").forward(req, resp);
         }
     }
 }

@@ -32,6 +32,9 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     private static final String SQL_SELECT_SUCH_USER_FOR_REGISTRATION = "select * from account where login = ? or email = ? " +
             "or phone = ?";
 
+    //language=sql
+    private static final String SQL_SELECT_USER_BY_LOGIN = "select * from account where login = ?";
+
 
 
 
@@ -75,6 +78,12 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     @Override
     public Optional<User> findSuchUserForSignIn(String login, String password) {
         User user = template.queryForObject(SQL_SELECT_SUCH_USER_FOR_SIGN_IN, userRowMapper, login, password);
+        return Optional.ofNullable(user);
+    }
+
+    @Override
+    public Optional<User> findUserByLogin(String login) {
+        User user = template.queryForObject(SQL_SELECT_USER_BY_LOGIN, userRowMapper, login);
         return Optional.ofNullable(user);
     }
 
