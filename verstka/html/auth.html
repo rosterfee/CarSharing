@@ -234,9 +234,15 @@
         }
     </style>
 </head>
+<body>
 <div class="form__wrapper">
-    <form id="register" action="#">
+    <form id="register mt-2" action="#">
         <h1>Регистрация</h1>
+        <div class="fields">
+            <label for="login"></label>
+            <input type="text" id="login" value="" placeholder="Логин" required>
+            <span class="dot">*</span>
+        </div>
         <div class="fields">
             <label for="name"></label>
             <input type="text" id="name" value="" placeholder="Имя" required>
@@ -272,3 +278,5 @@
         <button type="submit" name="button" id="send">Отправить</button>
     </form>
 </div>
+</body>
+</html>
