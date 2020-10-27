@@ -8,7 +8,11 @@
     <div class="row">
         <div class="col-md-5 mt-5">
             <h3 class="pl-4">Имя пользователя</h3>
-            <img class="rounded-circle" width="70%" src="../pictures/porche_911.jpg"></img>
+            <img class="rounded-circle" width="70%" src="${avatar}">
+            <form action="/upload_user_image" method="post" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit">
+            </form>
         </div>
         <div class="col-md-7">
             <form class="mt-3 pb-3">

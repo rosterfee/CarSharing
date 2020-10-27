@@ -2,6 +2,10 @@ package ru.itis.javalab.repositories;
 
 import ru.itis.javalab.utils.MyDataSource;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -124,4 +128,32 @@ public class SimpleJdbcTemplate {
         }
     }
 
+    public void uploadImage(InputStream inputStream, String sql, Object ... args) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = dataSource.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setBinaryStream(1, inputStream);
+            preparedStatement.setObject(2, args[0]);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException ignore) { }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) { }
+            }
+        }
+    }
 }

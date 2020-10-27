@@ -77,11 +77,11 @@
         </ul>
 
         <#if auth?? || admin??>
-            <a href="/sign_out">Выйти</a
+            <a class="btn btn-danger mr-3" href="/sign_out">Выйти</a>
         </#if>
 
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Ввдите запрос" aria-label="Search">
+            <input class="form-control mr-sm-2" type="text" placeholder="Введите запрос" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </div>

@@ -45,6 +45,7 @@ public class SignInServlet extends HttpServlet {
         if (user.isPresent()) {
 
             req.getSession().setAttribute("user", user.get());
+            System.out.println(user.get());
 
             if (req.getParameter("remember_me") != null) {
                 Cookie cookie = new Cookie("usersLogin", login);

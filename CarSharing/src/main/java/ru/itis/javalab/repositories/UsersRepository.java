@@ -2,6 +2,8 @@ package ru.itis.javalab.repositories;
 
 import ru.itis.javalab.models.User;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
 import java.util.Optional;
 
 public interface UsersRepository extends CrudRepository<User> {
@@ -15,4 +17,7 @@ public interface UsersRepository extends CrudRepository<User> {
 
     Optional<User> findUserByLogin(String login);
 
+    void uploadAvatar(InputStream inputStream, String login);
+
+    Optional<String> getAvatarByLogin(String login);
 }

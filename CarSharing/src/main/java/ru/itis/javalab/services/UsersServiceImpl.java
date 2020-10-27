@@ -3,6 +3,7 @@ package ru.itis.javalab.services;
 import ru.itis.javalab.models.User;
 import ru.itis.javalab.repositories.UsersRepository;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,4 +39,16 @@ public class UsersServiceImpl implements UsersService {
     public Optional<User> getUserByLogin(String login) {
         return usersRepository.findUserByLogin(login);
     }
+
+    @Override
+    public void uploadAvatar(InputStream inputStream, String login) {
+        usersRepository.uploadAvatar(inputStream, login);
+    }
+
+    @Override
+    public Optional<String> getAvatarByLogin(String login) {
+        return usersRepository.getAvatarByLogin(login);
+    }
+
+
 }
