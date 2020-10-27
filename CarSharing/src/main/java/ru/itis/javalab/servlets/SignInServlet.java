@@ -47,7 +47,9 @@ public class SignInServlet extends HttpServlet {
             req.getSession().setAttribute("user", user.get());
 
             if (req.getParameter("remember_me") != null) {
-                resp.addCookie(new Cookie("usersLogin", login));
+                Cookie cookie = new Cookie("usersLogin", login);
+                cookie.setMaxAge(60 * 60);
+                resp.addCookie(cookie);
             }
 
             resp.sendRedirect("/main");

@@ -51,33 +51,6 @@
 
 
 
-    <filter>
-        <filter-name>AuthFilter</filter-name>
-        <filter-class>ru.itis.javalab.filters.AuthFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
-        <url-pattern>/profile</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
-        <url-pattern>/my_order</url-pattern>
-    </filter-mapping>
-
-
-
-    <filter>
-        <filter-name>HeaderLoadFilter</filter-name>
-        <filter-class>ru.itis.javalab.filters.HeaderLoadFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>HeaderLoadFilter</filter-name>
-        <url-pattern>/*r</url-pattern>
-    </filter-mapping>
-
 <!--    <security-constraint>-->
 <!--        <web-resource-collection>-->
 <!--            <web-resource-name>FreeMarker MVC Views</web-resource-name>-->

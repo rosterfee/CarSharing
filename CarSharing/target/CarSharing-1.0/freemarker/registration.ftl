@@ -4,7 +4,7 @@
 
 <@header.main>
 <div class="form__wrapper">
-    <form id="register" action="#" method="post">
+    <form id="register" action="/registration" method="post">
         <h1>Регистрация</h1>
         <div class="fields">
             <label for="firstName">Ваше имя:</label>

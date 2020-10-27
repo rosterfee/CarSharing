@@ -52,6 +52,7 @@ public class RegistrationServlet extends HttpServlet {
             req.getRequestDispatcher("freemarker/registration.ftl").forward(req, resp);
         }
         else {
+            System.out.println(req.getParameter("first_name"));
             User newUser = User.builder()
                     .firstName(req.getParameter("first_name"))
                     .lastName(req.getParameter("last_name"))

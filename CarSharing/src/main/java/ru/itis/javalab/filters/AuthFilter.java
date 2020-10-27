@@ -1,13 +1,16 @@
 package ru.itis.javalab.filters;
 
+import ru.itis.javalab.models.User;
 import ru.itis.javalab.services.UsersService;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebFilter("/*")
 public class AuthFilter implements Filter {
 
     UsersService usersService;
@@ -24,28 +27,34 @@ public class AuthFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
-        if (httpServletRequest.getSession().getAttribute("user") ==  null) {
+        User user = (User) httpServletRequest.getSession().getAttribute("user");
+        if (user == null) {
 
             Cookie[] cookies = httpServletRequest.getCookies();
             Cookie userCookie = null;
             for (Cookie cookie: cookies) {
-                if (cookie.getName().equals("UsersLogin")) {
+                if (cookie.getName().equals("usersLogin")) {
                     userCookie = cookie;
                     break;
                 }
             }
             if (userCookie != null) {
                 httpServletRequest.getSession().setAttribute("user",
-                        usersService.getUserByLogin(userCookie.getValue()));
-                filterChain.doFilter(httpServletRequest, httpServletResponse);
+                        usersService.getUserByLogin(userCookie.getValue()).get());
             }
-            else {
-                httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/sign_in");
+
+        }
+
+        user = (User) httpServletRequest.getSession().getAttribute("user");
+        if (user != null) {
+            if (user.getLogin().equals("admin")) {
+                httpServletRequest.setAttribute("admin", "kostil");
             }
+            else httpServletRequest.setAttribute("auth", "kostil");
         }
-        else {
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
-        }
+        else httpServletRequest.setAttribute("non_auth", "kostil");
+
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 
     @Override

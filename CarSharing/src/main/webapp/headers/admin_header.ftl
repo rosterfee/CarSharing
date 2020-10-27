@@ -32,27 +32,32 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Каталог</a>
+                <a class="nav-link" href="/catalog">Каталог</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">О нас</a>
+                <a class="nav-link" href="/about_us">О нас</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Отзывы</a>
+                <a class="nav-link" href="/reviews">Отзывы</a>
             </li>
+            <#if non_auth??>
+            <li class="nav-item">
+                <a class="nav-link" href="/sign_in">Войти</a>
+            </li>
+            </#if>
 
-            <#if user??>
+            <#if auth?? || admin??>
             <li class="nav-item">
-                <a class="nav-link" href="#">Корзина</a>
+                <a class="nav-link" href="/my_order">Мой заказ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Профиль</a>
+                <a class="nav-link" href="/profile">Профиль</a>
             </li>
             </#if>
 
             <#if admin??>
             <li class="nav-item">
-                <a class="nav-link" href="#">Добавить авто</a>
+                <a class="nav-link" href="/add_car">Добавить авто</a>
             </li>
             </#if>
 
@@ -67,15 +72,17 @@
                     <a class="dropdown-item" href="#">Санкт-Петербург</a>
                 </div>
             </li>
+
+
         </ul>
 
-        <#if user??>
-        <button type="button" class="btn btn-danger mr-3" href="#">Выйти</button>
+        <#if auth?? || admin??>
+            <a href="/sign_out">Выйти</a
         </#if>
 
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Ввдите запрос" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </div>
 </nav>
