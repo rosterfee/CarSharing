@@ -8,39 +8,49 @@
         <h1>Регистрация</h1>
         <div class="fields">
             <label for="firstName">Ваше имя:</label>
-            <input type="text" id="firstName" value="" placeholder="Иван" name="first_name">
+            <input type="text" id="firstName" value="" placeholder="Иван" name="first_name" required>
             <span class="dot">*</span>
         </div>
         <div class="fields">
             <label for="lastName">Ваша фамилия:</label>
-            <input type="text" id="lastName" value="" placeholder="Иванов" name="last_name">
+            <input type="text" id="lastName" value="" placeholder="Иванов" name="last_name" required>
             <span class="dot">*</span>
         </div>
         <div class="fields">
             <label for="login">Ваш логин:</label>
-            <input type="text" id="login" value="" placeholder="AmateR" name="login">
+            <input type="text" id="login" value="" placeholder="AmateR" name="login" required>
             <span class="dot">*</span>
         </div>
         <div class="fields">
             <label for="email">Ваш e-mail:</label>
-            <input type="text" id="email" value="" placeholder="youmail@domain.ru" name="email">
+            <input type="text" id="email" value="" placeholder="youmail@domain.ru" name="email" required>
             <span class="dot">*</span>
         </div>
         <div class="fields">
             <label for="phone">Номер Вашего телефона:</label>
-            <input type="text" id="phone" value="" placeholder="79274286071" name="phone">
+            <input type="text" id="phone" value="" placeholder="79274286071" name="phone" required>
             <span class="dot">*</span>
+            <#if badPhoneNumber??>
+                ${badPhoneNumber}
+            </#if>
         </div>
         <div class="fields">
             <label for="pass1">Пароль:</label>
-            <input type="password" id="pass1" value="" name="password">
+            <input type="password" id="pass1" value="" name="password" required>
             <span class="dot">*</span>
+            <#if badPassword??>
+                ${badPassword}
+            </#if>
         </div>
         <div class="fields">
             <label for="pass2">Пароль еще раз:</label>
-            <input type="password" id="pass2" value="">
+            <input type="password" id="pass2" value="" required>
             <span class="dot">*</span>
         </div>
+
+        <#if suchUser??>
+            ${suchUser}
+        </#if>
 
         <button type="submit" name="button" id="send">Отправить</button>
     </form>

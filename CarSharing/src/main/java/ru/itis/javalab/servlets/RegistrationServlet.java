@@ -37,22 +37,17 @@ public class RegistrationServlet extends HttpServlet {
         String phone = req.getParameter("phone");
         String password = req.getParameter("password");
 
-        req.setAttribute("badPhoneNumber", false);
-        req.setAttribute("badPassword", false);
-        req.setAttribute("suchUser", false);
-
         if (!Pattern.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", phone)) {
-            req.setAttribute("badPhoneNumber", true);;
+            req.setAttribute("badPhoneNumber", "Неверный формат номера");;
         }
         if (!Pattern.matches("^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$", password)) {
-            req.setAttribute("badPassword", true);
+            req.setAttribute("badPassword", "Неверный формат пароля");
         }
 
-        if ((boolean) req.getAttribute("badPhoneNumber") || (boolean) req.getAttribute("badPassword")) {
+        if (req.getAttribute("badPhoneNumber") != null || req.getAttribute("badPassword") != null) {
             req.getRequestDispatcher("freemarker/registration.ftl").forward(req, resp);
         }
         else {
-            System.out.println(req.getParameter("first_name"));
             User newUser = User.builder()
                     .firstName(req.getParameter("first_name"))
                     .lastName(req.getParameter("last_name"))
@@ -68,7 +63,7 @@ public class RegistrationServlet extends HttpServlet {
                 resp.sendRedirect("/sign_in");
             }
             else {
-                req.setAttribute("suchUser", true);
+                req.setAttribute("suchUser", "Пользователь с такими данными уже существует");
                 req.getRequestDispatcher("freemarker/registration.ftl").forward(req, resp);
             }
         }

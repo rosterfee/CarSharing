@@ -39,8 +39,6 @@ public class SignInServlet extends HttpServlet {
         String password = req.getParameter("password");
         String hashedPassword = MD5PasswordHasher.getHashPassword(password);
 
-        req.setAttribute("badLoginOrPassword", false);
-
         Optional<User> optionalUser = usersService.getSuchUserForSignIn(login, hashedPassword);
         if (optionalUser.isPresent()) {
 
@@ -55,8 +53,8 @@ public class SignInServlet extends HttpServlet {
             resp.sendRedirect("/main");
         }
         else {
-            req.setAttribute("badLoginOrPassword", true);
-            req.getRequestDispatcher("/sign_in.ftl").forward(req, resp);
+            req.setAttribute("badLoginOrPassword", "Неверный логин или пароль");
+            req.getRequestDispatcher("freemarker/sign_in.ftl").forward(req, resp);
         }
     }
 }

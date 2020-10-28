@@ -27,6 +27,9 @@
                         Запомнить меня
                     </label>
                 </div>
+                <#if badLoginOrPassword??>
+                    ${badLoginOrPassword}
+                </#if>
                 <button type="submit" class="btn btn-primary">Войти</button>
                 <a type="button" class="btn btn-primary" href="registration">Регистрация</a>
             </form>

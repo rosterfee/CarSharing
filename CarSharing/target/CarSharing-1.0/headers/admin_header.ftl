@@ -38,7 +38,7 @@
                 <a class="nav-link" href="/about_us">О нас</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reviews">Отзывы</a>
+                <a class="nav-link" href="/feedbacks">Отзывы</a>
             </li>
             <#if non_auth??>
             <li class="nav-item">

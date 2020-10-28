@@ -18,7 +18,7 @@ public class SignOutServlet extends HttpServlet {
 
         Cookie[] cookies = req.getCookies();
         for (Cookie cookie: cookies) {
-            if (cookie.getName().equals("usersLogin")) {
+            if (cookie.getName().equals("usersId")) {
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
                 break;

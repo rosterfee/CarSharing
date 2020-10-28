@@ -7,42 +7,47 @@
 <section class="container">
     <div class="row">
 
+
         <div class="col-md-12">
+            <#if user??>
             <div class="panel bg-light mt-5 rounded">
                 <div class="panel-body pt-3 pr-2 pl-2">
-                    <textarea class="form-control" rows="2" placeholder="Добавьте Ваш отзыв" name="comment"></textarea>
-                    <div class="mar-top clearfix pb-2 pr-2">
-                        <button class="btn btn-sm btn-primary pull-right mt-4" type="submit"><i
-                                class="fa fa-pencil fa-fw"></i> Добавить
-                        </button>
-                        <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
-                        <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
-                        <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a>
-                    </div>
+                    <form action="/feedbacks" method="post" id="feedback_form">
+                            <textarea form="feedback_form" class="form-control" rows="2" placeholder="Добавьте Ваш отзыв" name="text"></textarea>
+                        <div class="mar-top clearfix pb-2 pr-2">
+                            <button class="btn btn-sm btn-primary pull-right mt-4" type="submit"><i
+                                        class="fa fa-pencil fa-fw"></i> Добавить
+                            </button>
+                            <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
+                            <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
+                            <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a>
+                        </div>
+                    </form>
                 </div>
             </div>
+            </#if>
 
-            <!--            <% for (int i = 0; i < 3; i++) {%>-->
             <div class="panel">
                 <div class="panel-body">
                     <!-- Содержание Новостей -->
                     <!--===================================================-->
+                    <#list feedbacks as feedback>
                     <div class="media-block row bg-light mt-5 pt-2 pr-2 pl-2 rounded">
                         <a class="media-left" href="#"><img class="img-circle img-sm" alt="Профиль пользователя" style="width: 75px"
-                                                            src="https://bootstraptema.ru/snippets/icons/2016/mia/1.png"></a>
+                                                            src="${feedback.user.avatar}"></a>
                         <div class="media-body">
                             <div class="mar-btm col-md-3">
-                                <a href="#" class="btn-link text-semibold media-heading box-inline">Максим</a>
-                                <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> - 19-06-2016</p>
+                                <a href="#" class="btn-link text-semibold media-heading box-inline">${feedback.user.firstName}</a>
+                                <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> - ${feedback.date}</p>
                             </div>
                             <div class="col-md-9">
-                                <p>Секция с комментариями для сайта с подключенным Bootstrap!!!</p>
+                                <p>${feedback.text}</p>
                             </div>
                         </div>
                     </div>
+                    </#list>
                 </div>
             </div>
-            <!--            <%}%>-->
         </div>
     </div>
 </section>

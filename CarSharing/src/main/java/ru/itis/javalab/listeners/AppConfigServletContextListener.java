@@ -1,7 +1,11 @@
 package ru.itis.javalab.listeners;
 
+import ru.itis.javalab.repositories.FeedbacksRepository;
+import ru.itis.javalab.repositories.FeedbacksRepositoryJdbcImpl;
 import ru.itis.javalab.repositories.UsersRepository;
 import ru.itis.javalab.repositories.UsersRepositoryJdbcImpl;
+import ru.itis.javalab.services.FeedbacksService;
+import ru.itis.javalab.services.FeedbacksServiceImpl;
 import ru.itis.javalab.services.UsersService;
 import ru.itis.javalab.services.UsersServiceImpl;
 import ru.itis.javalab.utils.MyDataSource;
@@ -27,7 +31,11 @@ public class AppConfigServletContextListener implements ServletContextListener {
         UsersRepository usersRepository = new UsersRepositoryJdbcImpl(myDataSource);
         UsersService usersService = new UsersServiceImpl(usersRepository);
 
+        FeedbacksRepository feedbacksRepository = new FeedbacksRepositoryJdbcImpl(myDataSource, usersService);
+        FeedbacksService feedbacksService = new FeedbacksServiceImpl(feedbacksRepository);
+
         servletContext.setAttribute("usersService", usersService);
+        servletContext.setAttribute("feedbacksService", feedbacksService);
     }
 
     @Override
