@@ -4,11 +4,6 @@ import ru.itis.javalab.models.User;
 import ru.itis.javalab.utils.MyDataSource;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +19,8 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
             .login(resultSet.getString("login"))
             .email(resultSet.getString("email"))
             .password(resultSet.getString("password"))
+            .avatar(resultSet.getString("avatar"))
+            .id(resultSet.getLong("id"))
             .build();
 
 
@@ -36,21 +33,22 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     //language=sql
     private static final String SQL_SAVE_NEW_USER =
-            "insert into account (login, password, email, phone, first_name, last_name)" +
-                    "values (?, ?, ?, ?, ?, ?)";
+            "insert into account (login, password, email, phone, first_name, last_name, avatar)" +
+                    "values (?, ?, ?, ?, ?, ?, ?)";
 
     //language=sql
     private static final String SQL_SELECT_SUCH_USER_FOR_REGISTRATION = "select * from account where login = ? or email = ? " +
             "or phone = ?";
 
     //language=sql
-    private static final String SQL_SELECT_USER_BY_LOGIN = "select * from account where login = ?";
+    private static final String SQL_SELECT_USER_BY_ID = "select * from account where id = ?";
 
     //language=sql
     private static final String SQL_INSERT_AVATAR_TO_USER = "update account set avatar = ? where login = ?";
 
     //language=sql
-    private static final String SQL_SELECT_AVATAR_BY_LOGIN = "select avatar from account where login = ?";
+    private static final String SQL_UPDATE_USER = "update account set first_name = ?, last_name = ?," +
+            "email = ?, phone = ?, login = ?, password = ? where id = ?";
 
 
 
@@ -83,7 +81,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     @Override
     public void save(User entity) {
         template.update(SQL_SAVE_NEW_USER, entity.getLogin(), entity.getPassword(), entity.getEmail(),
-                entity.getPhone(), entity.getFirstName(), entity.getLastName());
+                entity.getPhone(), entity.getFirstName(), entity.getLastName(), entity.getAvatar());
     }
 
     @Override
@@ -100,8 +98,8 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     @Override
-    public Optional<User> findUserByLogin(String login) {
-        User user = template.queryForObject(SQL_SELECT_USER_BY_LOGIN, userRowMapper, login);
+    public Optional<User> findUserById(long id) {
+        User user = template.queryForObject(SQL_SELECT_USER_BY_ID, userRowMapper, id);
         return Optional.ofNullable(user);
     }
 
@@ -110,55 +108,11 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         template.uploadImage(inputStream, SQL_INSERT_AVATAR_TO_USER, login);
     }
 
-    @Override
-    public Optional<String> getAvatarByLogin(String login) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        String content = null;
-
-        try {
-
-            connection = dataSource.getConnection();
-            preparedStatement = connection.prepareStatement(SQL_SELECT_AVATAR_BY_LOGIN);
-            preparedStatement.setObject(1, login);
-
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                if (resultSet.getObject("avatar") != null) {
-                    content = "data:image/png;base64," +
-                            Base64.getEncoder().encodeToString(resultSet.getBytes("avatar"));
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ignore) { }
-            }
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException ignore) { }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException ignore) { }
-            }
-        }
-
-        return Optional.ofNullable(content);
-    }
-
 
         @Override
     public void update(User entity) {
-
+        template.update(SQL_UPDATE_USER, entity.getFirstName(), entity.getLastName(), entity.getEmail(),
+                entity.getPhone(), entity.getLogin(), entity.getPassword(), entity.getId());
     }
 
     @Override

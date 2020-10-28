@@ -36,6 +36,7 @@ public class ImageUploadServlet extends HttpServlet {
         User user = (User) httpSession.getAttribute("user");
         InputStream inputStream = req.getPart("file").getInputStream();
         usersService.uploadAvatar(inputStream, user.getLogin());
+        httpSession.setAttribute("user", usersService.getUserById(user.getId()).get());
 
         resp.sendRedirect(req.getContextPath() + "/profile");
     }

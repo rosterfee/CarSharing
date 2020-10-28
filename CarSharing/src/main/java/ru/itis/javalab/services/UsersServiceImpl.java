@@ -36,8 +36,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<User> getUserByLogin(String login) {
-        return usersRepository.findUserByLogin(login);
+    public Optional<User> getUserById(long id) {
+        return usersRepository.findUserById(id);
     }
 
     @Override
@@ -46,8 +46,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<String> getAvatarByLogin(String login) {
-        return usersRepository.getAvatarByLogin(login);
+    public void updateUser(User entity) {
+        usersRepository.update(entity);
     }
 
 

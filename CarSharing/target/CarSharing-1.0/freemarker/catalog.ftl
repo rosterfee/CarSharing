@@ -145,14 +145,16 @@
     </form>
 </div>
 <div class="catalog-content">
-    <div class="catalog-product">
+    <#list cars as car>
         <div class="card catalog-product" style="width: 25%">
-            <a href="#"><img class="card-img-top" src="../pictures/gtr.jpg" alt=""></a>
+            <a href="/car_profile"><img class="card-img-top" src="../pictures/gtr.jpg" alt="">
+                <input type="hidden" name="id" value="${car_id}">
+            </a>
             <div class="card-body text-center">
                 Nissan GTR
             </div>
         </div>
-    </div>
+    </#list>
 </div>
 
 <style>

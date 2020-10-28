@@ -41,14 +41,13 @@ public class SignInServlet extends HttpServlet {
 
         req.setAttribute("badLoginOrPassword", false);
 
-        Optional<User> user = usersService.getSuchUserForSignIn(login, hashedPassword);
-        if (user.isPresent()) {
+        Optional<User> optionalUser = usersService.getSuchUserForSignIn(login, hashedPassword);
+        if (optionalUser.isPresent()) {
 
-            req.getSession().setAttribute("user", user.get());
-            System.out.println(user.get());
+            req.getSession().setAttribute("user", optionalUser.get());
 
             if (req.getParameter("remember_me") != null) {
-                Cookie cookie = new Cookie("usersLogin", login);
+                Cookie cookie = new Cookie("usersId", String.valueOf(optionalUser.get().getId()));
                 cookie.setMaxAge(60 * 60);
                 resp.addCookie(cookie);
             }

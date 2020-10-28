@@ -33,14 +33,14 @@ public class AuthFilter implements Filter {
             Cookie[] cookies = httpServletRequest.getCookies();
             Cookie userCookie = null;
             for (Cookie cookie: cookies) {
-                if (cookie.getName().equals("usersLogin")) {
+                if (cookie.getName().equals("usersId")) {
                     userCookie = cookie;
                     break;
                 }
             }
             if (userCookie != null) {
                 httpServletRequest.getSession().setAttribute("user",
-                        usersService.getUserByLogin(userCookie.getValue()).get());
+                        usersService.getUserById(Long.parseLong(userCookie.getValue())).get());
             }
 
         }

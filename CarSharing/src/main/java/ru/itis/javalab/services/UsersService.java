@@ -17,9 +17,10 @@ public interface UsersService {
 
     Optional<User> getSuchUserForSignIn(String login, String password);
 
-    Optional<User> getUserByLogin(String login);
+    Optional<User> getUserById(long id);
 
     void uploadAvatar(InputStream inputStream, String login);
 
-    Optional<String> getAvatarByLogin(String login);
+    void updateUser(User entity);
+
 }

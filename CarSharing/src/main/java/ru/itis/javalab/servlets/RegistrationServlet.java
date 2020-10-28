@@ -60,6 +60,7 @@ public class RegistrationServlet extends HttpServlet {
                     .email(req.getParameter("email"))
                     .phone(phone)
                     .password(MD5PasswordHasher.getHashPassword(password))
+                    .avatar("../pictures/default_user.jpg")
                     .build();
 
             if (!usersService.getSuchUserForRegistration(newUser).isPresent()) {

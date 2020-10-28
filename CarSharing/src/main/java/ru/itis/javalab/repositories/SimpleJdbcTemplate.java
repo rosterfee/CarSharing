@@ -1,9 +1,9 @@
 package ru.itis.javalab.repositories;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import org.apache.commons.io.IOUtils;
 import ru.itis.javalab.utils.MyDataSource;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class SimpleJdbcTemplate {
@@ -136,12 +137,13 @@ public class SimpleJdbcTemplate {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setBinaryStream(1, inputStream);
+            preparedStatement.setObject(1, "data:image/png;base64," +
+                    Base64.getEncoder().encodeToString(IOUtils.toByteArray(inputStream)));
             preparedStatement.setObject(2, args[0]);
 
             preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         } finally {
             if (preparedStatement != null) {
