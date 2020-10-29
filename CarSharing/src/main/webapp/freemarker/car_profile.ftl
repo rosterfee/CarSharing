@@ -9,13 +9,13 @@
         <div id="carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="img-fluid" src="../pictures/gtr.jpg">
+                    <img class="img-fluid" src="${car.photos[0].image}">
                 </div>
                 <div class="carousel-item">
-                    <img class="img-fluid" src="../pictures/gtr_1.jpg">
+                    <img class="img-fluid" src="${car.photos[1].image}">
                 </div>
                 <div class="carousel-item">
-                    <img class="img-fluid" src="../pictures/gtr_2.jpg">
+                    <img class="img-fluid" src="${car.photos[2].image}">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -30,30 +30,30 @@
     </div>
     <div class="col-md-6 mt-5">
         <p class="text-center  bg-light rounded">
-            <big>Nissan GT-R — суперкар, выпускаемый компанией Nissan Motor.
-                Представлен в качестве серийной модели на Токийском автосалоне 24 октября 2007 года, продажи начались в
-                2008 году в Японии,
-                затем в США и Европе. В отличие от предшественников, выпускавшихся только для JDM и ограниченным тиражом
-                поставлявшихся
-                в Великобританию, имеется вариант с левым рулём. И этот автомобиль может оказаться под вашем управлением
-                всего в пару кликов.
-            </big>
+            <big>${car.description}</big>
         </p>
         <ul class="text-left bg-light pl-2 rounded list-unstyled">
             <li><big>Краткая справка:</big></li>
             <ul>
-                <li>Мощьность : 600 л.с.</li>
-                <li>Максимальная скорость : 315 км/ч</li>
-                <li>Разгон до 100 : 2.8 сек</li>
+                <li>Мощность : ${car.powers}.</li>
+                <li>Объем двигателя : ${car.engine} л.</li>
+                <li>Тип коробки передач : ${car.transmission}</li>
+                <li>Максимальная скорость : ${car.maxSpeed} км/ч</li>
+                <li>Разгон до 100 : ${car.racing} сек</li>
             </ul>
         </ul>
-        <button type="button" class="btn btn-outline-light btn-lg btn-block"><a class="nav-link text-light" href="#">Заказать</a>
-        </button>
+        <h4>Цена за 4 часа аренды: ${car.price}</h4>
+
+        <form action="/car_profile" method="post">
+            <input hidden name="car_id" value="${car.id}">
+            <button type="submit" class="btn btn-outline-light btn-lg btn-block">Заказать</button>
+        </form>
+
     </div>
 </div>
 <div class="row ml-1 mr-1">
     <div class="col-md-6">
-        <h2 class="bg-light rounded text-center">Nissan GT-R</h2>
+        <h2 class="bg-light rounded text-center">${car.mark + " " + car.model}</h2>
     </div>
 </div>
 </body>

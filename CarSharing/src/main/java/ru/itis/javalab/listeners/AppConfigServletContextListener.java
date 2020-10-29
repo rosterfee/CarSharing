@@ -34,10 +34,14 @@ public class AppConfigServletContextListener implements ServletContextListener {
         CarsRepository carsRepository = new CarsRepositoryJdbcImpl(myDataSource, carImagesService);
         CarsService carsService = new CarsServiceImpl(carsRepository);
 
+        OrdersRepository ordersRepository = new OrdersRepositoryJdbcImpl(myDataSource);
+        OrderService orderService = new OrdersServiceImpl(ordersRepository);
+
         servletContext.setAttribute("usersService", usersService);
         servletContext.setAttribute("feedbacksService", feedbacksService);
         servletContext.setAttribute("carImagesService", carImagesService);
         servletContext.setAttribute("carsService", carsService);
+        servletContext.setAttribute("ordersService", orderService);
     }
 
     @Override

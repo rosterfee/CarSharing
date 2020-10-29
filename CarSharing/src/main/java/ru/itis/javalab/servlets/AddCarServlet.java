@@ -59,7 +59,7 @@ public class AddCarServlet extends HttpServlet {
             carImagesService.save(inputStream, car.getId());
         }
 
-        System.out.print(carsService.getCarById(car.getId()).get().getPhotos().size());
+        doGet(req, resp);
 
     }
 }

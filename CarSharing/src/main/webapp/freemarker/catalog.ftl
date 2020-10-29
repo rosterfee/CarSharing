@@ -144,24 +144,32 @@
         <button type="button" class="btn btn-info">Применить</button>
     </form>
 </div>
+
 <div class="catalog-content">
+        <#list cars as car>
         <div class="card catalog-product" style="width: 25%">
-            <a href="/car_profile"><img class="card-img-top" src="../pictures/gtr.jpg" alt="">
-                <input type="hidden" name="id" value="${car_id}">
+
+            <a href="/car_profile?id=${car.id}">
+                <img class="card-img-top" src="${car.photos[0].image}" alt="">
             </a>
+
             <div class="card-body text-center">
-                Nissan GTR
+                ${car.mark + " " + car.model}
             </div>
+
         </div>
+        </#list>
 </div>
 
 <style>
     .catalog-product {
-        display: flex;
-        flex-wrap: wrap;
         margin-left: 50px;
         margin-top: 30px;
         margin-bottom: 40px;
+    }
+    .catalog-content {
+        display: flex;
+        flex-wrap: wrap;
     }
     .filters {
         display: flex;
