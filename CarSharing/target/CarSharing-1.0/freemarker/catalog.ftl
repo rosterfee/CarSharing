@@ -145,7 +145,6 @@
     </form>
 </div>
 <div class="catalog-content">
-    <#list cars as car>
         <div class="card catalog-product" style="width: 25%">
             <a href="/car_profile"><img class="card-img-top" src="../pictures/gtr.jpg" alt="">
                 <input type="hidden" name="id" value="${car_id}">
@@ -154,7 +153,6 @@
                 Nissan GTR
             </div>
         </div>
-    </#list>
 </div>
 
 <style>

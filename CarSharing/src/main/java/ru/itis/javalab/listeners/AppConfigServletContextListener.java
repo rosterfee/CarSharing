@@ -1,13 +1,7 @@
 package ru.itis.javalab.listeners;
 
-import ru.itis.javalab.repositories.FeedbacksRepository;
-import ru.itis.javalab.repositories.FeedbacksRepositoryJdbcImpl;
-import ru.itis.javalab.repositories.UsersRepository;
-import ru.itis.javalab.repositories.UsersRepositoryJdbcImpl;
-import ru.itis.javalab.services.FeedbacksService;
-import ru.itis.javalab.services.FeedbacksServiceImpl;
-import ru.itis.javalab.services.UsersService;
-import ru.itis.javalab.services.UsersServiceImpl;
+import ru.itis.javalab.repositories.*;
+import ru.itis.javalab.services.*;
 import ru.itis.javalab.utils.MyDataSource;
 
 import javax.servlet.ServletContext;
@@ -34,8 +28,16 @@ public class AppConfigServletContextListener implements ServletContextListener {
         FeedbacksRepository feedbacksRepository = new FeedbacksRepositoryJdbcImpl(myDataSource, usersService);
         FeedbacksService feedbacksService = new FeedbacksServiceImpl(feedbacksRepository);
 
+        CarImagesRepository carImagesRepository = new CarImagesRepositoryJdbcImpl(myDataSource);
+        CarImagesService carImagesService = new CarImagesServiceImpl(carImagesRepository);
+
+        CarsRepository carsRepository = new CarsRepositoryJdbcImpl(myDataSource, carImagesService);
+        CarsService carsService = new CarsServiceImpl(carsRepository);
+
         servletContext.setAttribute("usersService", usersService);
         servletContext.setAttribute("feedbacksService", feedbacksService);
+        servletContext.setAttribute("carImagesService", carImagesService);
+        servletContext.setAttribute("carsService", carsService);
     }
 
     @Override
