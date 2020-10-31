@@ -67,11 +67,14 @@
                     Города
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Казань</a>
-                    <a class="dropdown-item" href="#">Москва</a>
-                    <a class="dropdown-item" href="#">Санкт-Петербург</a>
+                    <a class="dropdown-item" href="/choose_city?city=Казань">Казань</a>
+                    <a class="dropdown-item" href="/choose_city?city=Москва">Москва</a>
+                    <a class="dropdown-item" href="/choose_city?city=Санкт-Петербург">Санкт-Петербург</a>
                 </div>
             </li>
+            <#if city??>
+                ${city}
+            </#if>
 
 
         </ul>

@@ -36,10 +36,10 @@ public class CarProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Car car = carsService.getCarById(Long.parseLong(req.getParameter("id"))).get();
+        Car car = carsService.getCarById(Long.parseLong(req.getParameter("car_id"))).get();
         req.setAttribute("car", car);
 
-        req.getRequestDispatcher("freemarker//car_profile.ftl").forward(req, resp);
+        req.getRequestDispatcher("freemarker/car_profile.ftl").forward(req, resp);
     }
 
     @Override
@@ -50,16 +50,18 @@ public class CarProfileServlet extends HttpServlet {
 
         if (user != null) {
 
-            Order order = Order.builder()
-                    .userId(user.getId())
-                    .carId(Long.parseLong(req.getParameter("car_id")))
-                    .active("active")
-                    .date(StringDateGenerator.getCurrentStringDate())
-                        .build();
+            if (!ordersService.getActiveOrderByUserId(user.getId()).isPresent()) {
 
-            ordersService.saveOrder(order);
+                ordersService.saveOrder(user.getId(), Long.parseLong(req.getParameter("car_id")));
 
-            resp.sendRedirect(req.getContextPath() + "/my_order");
+                resp.sendRedirect(req.getContextPath() + "/my_order");
+            }
+            else {
+                req.setAttribute("userHasActiveOrder", "Извините, но в Вашем заказе не может находиться " +
+                        "более одной машины");
+                req.setAttribute("car_id", req.getParameter("car_id"));
+                doGet(req, resp);
+            }
         }
         else {
             resp.sendRedirect(req.getContextPath() + "/sign_in");

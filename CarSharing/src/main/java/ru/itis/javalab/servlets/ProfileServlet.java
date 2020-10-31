@@ -1,6 +1,8 @@
 package ru.itis.javalab.servlets;
 
+import ru.itis.javalab.models.Order;
 import ru.itis.javalab.models.User;
+import ru.itis.javalab.services.OrderService;
 import ru.itis.javalab.services.UsersService;
 import ru.itis.javalab.utils.MD5PasswordHasher;
 
@@ -13,17 +15,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
 
     UsersService usersService;
+    OrderService orderService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         ServletContext servletContext = config.getServletContext();
         usersService = (UsersService) servletContext.getAttribute("usersService");
+        orderService = (OrderService) servletContext.getAttribute("ordersService");
     }
 
     @Override
@@ -32,6 +37,9 @@ public class ProfileServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         User user = (User) httpSession.getAttribute("user");
         req.setAttribute("user", user);
+
+        List<Order> userOrders = orderService.getAllNonActiveByUserId(user.getId());
+        req.setAttribute("orders", userOrders);
 
         req.getRequestDispatcher("freemarker/profile.ftl").forward(req, resp);
 

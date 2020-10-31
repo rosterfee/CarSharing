@@ -67,11 +67,6 @@ public class CarsRepositoryJdbcImpl implements CarsRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
-
-    }
-
-    @Override
     public void delete(Car entity) {
 
     }

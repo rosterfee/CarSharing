@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter("/*")
@@ -27,7 +28,9 @@ public class AuthFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
-        User user = (User) httpServletRequest.getSession().getAttribute("user");
+        HttpSession session = httpServletRequest.getSession();
+
+        User user = (User) session.getAttribute("user");
         if (user == null) {
 
             Cookie[] cookies = httpServletRequest.getCookies();
@@ -39,13 +42,20 @@ public class AuthFilter implements Filter {
                 }
             }
             if (userCookie != null) {
-                httpServletRequest.getSession().setAttribute("user",
+                session.setAttribute("user",
                         usersService.getUserById(Long.parseLong(userCookie.getValue())).get());
+            }
+
+            for (Cookie cookie: cookies) {
+                if (cookie.getName().equals("city")) {
+                    session.setAttribute("city", cookie.getValue());
+                    break;
+                }
             }
 
         }
 
-        user = (User) httpServletRequest.getSession().getAttribute("user");
+        user = (User) session.getAttribute("user");
         if (user != null) {
             if (user.getLogin().equals("admin")) {
                 httpServletRequest.setAttribute("admin", "kostil");

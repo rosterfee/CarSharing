@@ -6,11 +6,11 @@
 <body class="bg-info">
 <div class="container bg-light mt-5 rounded">
     <h2 class="text-center">Оплата</h2>
-    <form>
+    <form action="/pay_offer" method="post">
         <label for="date">Выберете дату, когда вы хотите забрать авто</label>
         <input style="width: 200px" type="datetime-local" class="form-control" id="date" name="date" placeholder="Дата"
                required>
-    </form>
+
     <div class="mt-3">
         <h3>Форма оплаты</h3>
         <ul class="nav nav-tabs">
@@ -66,26 +66,26 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12 pad-adjust">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" checked class="text-muted"> Save details for
-                                                    fast
-                                                    payments <a href="#"> learn how ?</a>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+<#--                                    <div class="row">-->
+<#--                                        <div class="col-md-12 pad-adjust">-->
+<#--                                            <div class="checkbox">-->
+<#--                                                <label>-->
+<#--                                                    <input type="checkbox" checked class="text-muted"> Save details for-->
+<#--                                                    fast-->
+<#--                                                    payments <a href="#"> learn how ?</a>-->
+<#--                                                </label>-->
+<#--                                            </div>-->
+<#--                                        </div>-->
+<#--                                    </div>-->
 
-                                    <div class="row pb-2">
-                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                            <input type="submit" class="btn btn-danger" value="CANCEL"/>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
-                                            <input type="submit" class="btn btn-warning btn-block" value="PAY NOW"/>
-                                        </div>
-                                    </div>
+<#--                                    <div class="row pb-2">-->
+<#--                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">-->
+<#--                                            <input type="submit" class="btn btn-danger" value="CANCEL"/>-->
+<#--                                        </div>-->
+<#--                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">-->
+<#--                                            <input type="submit" class="btn btn-warning btn-block" value="PAY NOW"/>-->
+<#--                                        </div>-->
+<#--                                    </div>-->
 
                                 </div>
                             </div>
@@ -98,12 +98,26 @@
     </div>
     <div class="mt-2">
         <label for="address">Выберете адрес, где заберете авто:</label>
-        <select name="address" id="address">
-            <option value="address1">ул.Панфилова,42</option>
-            <option value="address2">ул.Александра Дунайского, 77Б</option>
-            <option value="address3">ул.Киямдина Ильдарова, 47Ф</option>
+        <select name="address" id="address" required>
+            <#if kazan??>
+                <option value="ул.Чистопольская,49">ул.Чистопольская,49</option>
+                <option value="ул.Адоратского, 77Б">ул.Адоратского, 77Б</option>
+                <option value="ул.Киямдина Ильдарова, 47Ф">ул.Дмитрия Итиса, 69А</option>
+                <#elseif moscow??>
+                    <option value="ул.Живописная, 2">ул.Живописная, 2</option>
+                    <option value="ул.Затонная,105">ул.Затонная,105</option>
+                    <option value="Елисеевский пер.,25А">Елисеевский пер.,25А</option>
+                    <#elseif petersburg??>
+                <option value="Невский проспект,17">Невский проспект,17</option>
+                <option value="ул.Пушкина,30">ул.Пушкина,30</option>
+                <option value="Литейный проспект, 36">Литейный проспект, 36</option>
+            </#if>
+
         </select>
     </div>
+        <input hidden name="order_id" value="${order_id}">
+    <button type="submit">Завершить оформление</button>
+    </form>
 </div>
 
 <style>

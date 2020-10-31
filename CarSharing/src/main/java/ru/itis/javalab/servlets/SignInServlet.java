@@ -45,9 +45,14 @@ public class SignInServlet extends HttpServlet {
             req.getSession().setAttribute("user", optionalUser.get());
 
             if (req.getParameter("remember_me") != null) {
-                Cookie cookie = new Cookie("usersId", String.valueOf(optionalUser.get().getId()));
-                cookie.setMaxAge(60 * 60);
-                resp.addCookie(cookie);
+
+                Cookie userCookie = new Cookie("usersId", String.valueOf(optionalUser.get().getId()));
+                userCookie.setMaxAge(60 * 60 * 24);
+                resp.addCookie(userCookie);
+
+                Cookie cityCookie = new Cookie("city", null);
+                cityCookie.setMaxAge(60 * 60 * 24);
+                resp.addCookie(cityCookie);
             }
 
             resp.sendRedirect("/main");

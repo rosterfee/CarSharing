@@ -63,11 +63,6 @@ public class FeedbacksRepositoryJdbcImpl implements FeedbacksRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
-
-    }
-
-    @Override
     public void delete(Feedback entity) {
 
     }

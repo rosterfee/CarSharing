@@ -2,10 +2,7 @@ package ru.itis.javalab.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/sign_out")
@@ -14,11 +11,23 @@ public class SignOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getSession().removeAttribute("user");
+        HttpSession session = req.getSession();
+
+        session.removeAttribute("city");
+        session.removeAttribute("user");
 
         Cookie[] cookies = req.getCookies();
+
         for (Cookie cookie: cookies) {
             if (cookie.getName().equals("usersId")) {
+                cookie.setMaxAge(0);
+                resp.addCookie(cookie);
+                break;
+            }
+        }
+
+        for (Cookie cookie: cookies) {
+            if (cookie.getName().equals("city")) {
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
                 break;

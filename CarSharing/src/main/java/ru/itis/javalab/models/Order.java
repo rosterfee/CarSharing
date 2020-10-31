@@ -8,9 +8,12 @@ import lombok.Data;
 public class Order {
 
     long id;
-    long userId;
-    long carId;
+    User user;
+    Car car;
     String date;
     String active;
+    String address;
+    String timeOfOrderTaking;
+    int price;
 
 }

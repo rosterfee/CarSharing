@@ -5,6 +5,7 @@
 <@header.main>
 <body class="bg-info">
 <div class="container bg-light mt-5 rounded">
+    <#if order??>
     <div class="table-responsive pt-3">
         <table class="table table-hover table-bordered">
             <thead>
@@ -16,22 +17,44 @@
             </thead>
             <tbody id="cart">
             <tr>
-                <td></td>
-                <td></td>
-                <td colspan="6" class="text-center" width="10%"><a href="#"><img src="../pictures/delete.jpg" alt="" style="width: 50%"></a></td>
+                <td>${order.car.mark + " " + order.car.model}</td>
+                <td>${order.car.price}</td>
+                <td colspan="6" class="text-center" width="10%"><a href="/delete_order?order_id=${order.id}"><img src="../pictures/delete.jpg" alt="" style="width: 50%"></a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <label for="hours">Количество времени:</label>
-    <select name="hours" id="hours">
-        <option value="four">4</option>
-        <option value="eight">8</option>
-        <option value="twelve">12</option>
-    </select>
-    <div>Итого: <span id="total-cart-summa">0</span> руб.</div>
-    <br>
-    <button id="order" class="btn btn-info mb-3">Оформить заказ</button>
+
+    <form action="/my_order" method="post">
+        <label for="hours">Количество времени(ч):</label>
+        <select name="hours" id="hours">
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="12">12</option>
+            <option value="24">24</option>
+        </select>
+        <input hidden name="order_id" value="${order.id}">
+        <input hidden name="car_price" value="${order.car.price}">
+        <div class="total_price">Итого: <span id="total-cart-summa">0</span> руб.</div>
+        <button type="submit" id="order" class="btn btn-info mb-3">Оформить заказ</button>
+    </form>
+
+    <#else><h4>Вы еще не добавили машину в Ваш заказ</h4>
+
+    </#if>
 </div>
+    <script>
+        $(document).ready(function () {
+            $('#hours').change(function () {
+                $.ajax( "/total_price" )
+                    .done(function(data) {
+                        $(".total_price span").text(data)
+                    })
+                    .fail(function () {
+                        alert("error")
+                    });
+            });
+        })
+    </script>
 </body>
 </@header.main>

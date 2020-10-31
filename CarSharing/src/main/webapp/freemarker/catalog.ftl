@@ -149,7 +149,7 @@
         <#list cars as car>
         <div class="card catalog-product" style="width: 25%">
 
-            <a href="/car_profile?id=${car.id}">
+            <a href="/car_profile?car_id=${car.id}">
                 <img class="card-img-top" src="${car.photos[0].image}" alt="">
             </a>
 

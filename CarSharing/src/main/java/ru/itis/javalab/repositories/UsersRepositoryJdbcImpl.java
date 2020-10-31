@@ -115,10 +115,6 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
                 entity.getPhone(), entity.getLogin(), entity.getPassword(), entity.getId());
     }
 
-    @Override
-    public void deleteById(Long id) {
-
-    }
 
     @Override
     public void delete(User entity) {

@@ -63,17 +63,20 @@
         <div class="col-md-12">
             <h2 class="text-center">История заказов</h2>
             <div class="catalog-content">
+                <#list orders as order>
                 <div class="catalog-product">
                     <div class="card" style="width: 25%">
-                        <a href="car_profile.ftl"><img class="card-img-top" src="../pictures/gtr.jpg"></img></a>
+                        <a href="/car_profile?car_id=${order.car.id}"><img class="card-img-top" src="${order.car.photos[0].image}"></a>
                         <div class="card-body text-center">
-                            Nissan GTR
+                            ${order.car.mark + " " + order.car.model}
                             <div>
-                                Data:
+                                Дата заказа: ${order.date}
                             </div>
                         </div>
                     </div>
                 </div>
+                    <#else><h5>У вас нет завершенных заказов</h5>
+                </#list>
             </div>
         </div>
     </div>
@@ -118,6 +121,7 @@
     #real-estates-detail .slides li img {
         height: 450px;
     }
+
 </style>
 
 <#--<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>-->

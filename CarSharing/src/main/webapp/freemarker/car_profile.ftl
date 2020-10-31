@@ -46,6 +46,9 @@
 
         <form action="/car_profile" method="post">
             <input hidden name="car_id" value="${car.id}">
+            <#if userHasActiveOrder??>
+                <strong>${userHasActiveOrder}</strong>
+            </#if>
             <button type="submit" class="btn btn-outline-light btn-lg btn-block">Заказать</button>
         </form>
 
