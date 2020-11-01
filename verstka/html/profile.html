@@ -56,6 +56,19 @@
         #real-estates-detail .slides li img {
             height: 450px;
         }
+
+        .history-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 50px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .pictur {
+            width: 200px;
+            margin-left: 75px;
+        }
     </style>
 
 </head>
@@ -93,24 +106,52 @@
                     <input type="password" id="pass1" value="" disabled>
                     <span class="dot">*</span>
                 </div>
-                <button type="button" class="btn btn-info" onclick="enableForm()" name="button1" id="enable_btn">Изменить данные профиля</button>
-                <button type="submit" class="btn btn-info" onclick="disabeleForm()" name="button2" id="disable_btn" disabled>Подтвердить данные</button>
+                <button type="button" class="btn btn-info" onclick="enableForm()" name="button1" id="enable_btn">
+                    Изменить данные профиля
+                </button>
+                <button type="submit" class="btn btn-info" onclick="disabeleForm()" name="button2" id="disable_btn"
+                        disabled>Подтвердить данные
+                </button>
             </form>
         </div>
+        <div class="custom-file pictur">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
     </div>
-    <div class="row mt-5 pb-3">
-        <div class="col-md-12">
-            <h2 class="text-center">История заказов</h2>
-            <div class="catalog-content">
-                <div class="catalog-product">
-                    <div class="card" style="width: 25%">
-                        <a href="car_profile.html"><img class="card-img-top" src="../pictures/gtr.jpg"></img></a>
-                        <div class="card-body text-center">
-                            Nissan GTR
-                            <div>
-                                Data:
-                            </div>
-                        </div>
+    <h2 class="text-center">История заказов</h2>
+    <div class="catalog-content pb-1">
+        <div class="catalog-product history-list">
+            <div class="card history-list" style="width: 25%">
+                <a href="car_profile.html"><img class="card-img-top" src="../pictures/gtr.jpg"></img></a>
+                <div class="card-body text-center">
+                    Nissan GTR
+                    <div>
+                        Data:
+                    </div>
+                </div>
+            </div><div class="card history-list" style="width: 25%">
+                <a href="car_profile.html"><img class="card-img-top" src="../pictures/gtr.jpg"></img></a>
+                <div class="card-body text-center">
+                    Nissan GTR
+                    <div>
+                        Data:
+                    </div>
+                </div>
+            </div><div class="card history-list" style="width: 25%">
+                <a href="car_profile.html"><img class="card-img-top" src="../pictures/gtr.jpg"></img></a>
+                <div class="card-body text-center">
+                    Nissan GTR
+                    <div>
+                        Data:
+                    </div>
+                </div>
+            </div><div class="card history-list" style="width: 25%">
+                <a href="car_profile.html"><img class="card-img-top" src="../pictures/gtr.jpg"></img></a>
+                <div class="card-body text-center">
+                    Nissan GTR
+                    <div>
+                        Data:
                     </div>
                 </div>
             </div>
@@ -153,6 +194,7 @@
         document.getElementById('disable_btn').removeAttribute('disabled');
         document.getElementById('enable_btn').setAttribute('disabled', '');
     }
+
     function disabeleForm() {
         document.getElementById('phone_number').setAttribute('disabled', '');
         document.getElementById('name').setAttribute('disabled', '');
