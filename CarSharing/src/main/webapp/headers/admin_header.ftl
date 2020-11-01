@@ -85,7 +85,7 @@
 
         <#if catalog??>
         <form class="form-inline my-2 my-lg-0" method="post" action="/catalog">
-            <input class="form-control mr-sm-2" type="text" placeholder="Введите запрос" aria-label="Search" name="search">
+            <input class="form-control mr-sm-2" type="text" placeholder="Поиск в каталоге..." aria-label="Search" name="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
         </#if>
