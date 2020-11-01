@@ -24,6 +24,34 @@ public class CarsRepositoryJdbcImpl implements CarsRepository {
 
     //language=sql
     private static final String SQL_SELECT_CAR_BY_ID = "select * from car where id = ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_LS_FROM_TO = "select * from car where powers >= ? and powers < ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_LS_FROM = "select * from car where powers >= ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_PRICE_FROM_TO = "select  * from car where price >= ? and price < ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_PRICE_FROM = "select  * from car where price >= ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_MARK = "select * from car where mark = ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_EXCEPT_MARK = "select * from car where mark != (? or ? or ?)";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_ENGINE_FROM_TO = "select * from car where engine >= ? and engine < ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_ENGINE_FROM = "select * from car where engine >= ?";
+
+    //language=sql
+    private static final String SQL_SELECT_ALL_BY_BOX = "select * from car where transmission = ?";
+
     public CarsRepositoryJdbcImpl(MyDataSource dataSource, CarImagesService carImagesService) {
         template = new SimpleJdbcTemplate(dataSource);
         this.carImagesService = carImagesService;
@@ -75,5 +103,50 @@ public class CarsRepositoryJdbcImpl implements CarsRepository {
     public Optional<Car> findCarByName(String carName) {
         Car car = template.queryForObject(SQL_SELECT_CAR_ID_BY_NAME, carRowMapper, carName);
         return Optional.ofNullable(car);
+    }
+
+    @Override
+    public List<Car> findByLs(int from, int to) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_LS_FROM_TO, carRowMapper, from, to);
+    }
+
+    @Override
+    public List<Car> findByLs(int from) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_LS_FROM, carRowMapper, from);
+    }
+
+    @Override
+    public List<Car> findByPrice(int from, int to) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_PRICE_FROM_TO, carRowMapper, from, to);
+    }
+
+    @Override
+    public List<Car> findByPrice(int from) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_PRICE_FROM, carRowMapper, from);
+    }
+
+    @Override
+    public List<Car> findByMark(String mark) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_MARK, carRowMapper, mark);
+    }
+
+    @Override
+    public List<Car> findByExceptMarks(String mark1, String mark2, String mark3) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_EXCEPT_MARK, carRowMapper, mark1, mark2, mark3);
+    }
+
+    @Override
+    public List<Car> findByEngine(double from, double to) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_ENGINE_FROM_TO, carRowMapper, from, to);
+    }
+
+    @Override
+    public List<Car> findByEngine(double from) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_ENGINE_FROM, carRowMapper, from);
+    }
+
+    @Override
+    public List<Car> findByBox(String box) {
+        return template.selectQuery(SQL_SELECT_ALL_BY_BOX, carRowMapper, box);
     }
 }
