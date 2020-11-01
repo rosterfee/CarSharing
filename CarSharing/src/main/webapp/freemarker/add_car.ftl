@@ -4,8 +4,8 @@
 
 <@header.main>
 <body class="bg-info">
-<div class="container bg-light rounded mt-5 pt-2">
     <form method="post" action="/add_car" id="add_car_form" enctype="multipart/form-data">
+    <div class="container bg-light rounded mt-5 pt-2">
         <div class="form-group">
             <label for="mark">Марка:</label>
             <input type="text" class="form-control" id="mark" name="mark" value="Nissan">
@@ -50,14 +50,17 @@
         </div>
 
         Загрузите первую картинку
-            <input type="file" name="file1" form="add_car_form">
+        <input type="file" name="file1" form="add_car_form">
         Загрузите вторую картинку
-            <input type="file" name="file2" form="add_car_form">
+        <input type="file" name="file2" form="add_car_form">
         Загрузите третью картинку
-            <input type="file" name="file3" form="add_car_form">
+        <input type="file" name="file3" form="add_car_form">
 
         <button type="submit">Сохранить машину</button>
 
+        <#if suchCar??><h3>${suchCar}</h3></#if>
+    </div>
     </form>
-</div>
+
+</body>
 </@header.main>

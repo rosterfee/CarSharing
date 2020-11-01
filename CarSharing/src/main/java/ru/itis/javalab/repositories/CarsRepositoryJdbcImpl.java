@@ -4,6 +4,8 @@ import ru.itis.javalab.models.Car;
 import ru.itis.javalab.services.CarImagesService;
 import ru.itis.javalab.utils.MyDataSource;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +53,10 @@ public class CarsRepositoryJdbcImpl implements CarsRepository {
 
     //language=sql
     private static final String SQL_SELECT_ALL_BY_BOX = "select * from car where transmission = ?";
+
+    //language=sql
+    private static final String SQL_GET_CAR_ID = "select * from car where mark = ? and model = ? and price = ? and " +
+            "powers = ? and engine = ? and transmission = ? and max_speed = ? and description = ? and racing = ?";
 
     public CarsRepositoryJdbcImpl(MyDataSource dataSource, CarImagesService carImagesService) {
         template = new SimpleJdbcTemplate(dataSource);
@@ -148,5 +154,13 @@ public class CarsRepositoryJdbcImpl implements CarsRepository {
     @Override
     public List<Car> findByBox(String box) {
         return template.selectQuery(SQL_SELECT_ALL_BY_BOX, carRowMapper, box);
+    }
+
+    @Override
+    public Optional<Car> findSuchCar(Car car) {
+         Car dbCar = template.queryForObject(SQL_GET_CAR_ID, carRowMapper, car.getMark(), car.getModel(), car.getPrice(),
+                car.getPowers(), car.getEngine(), car.getTransmission(), car.getMaxSpeed(), car.getDescription(),
+                car.getRacing());
+         return Optional.ofNullable(dbCar);
     }
 }

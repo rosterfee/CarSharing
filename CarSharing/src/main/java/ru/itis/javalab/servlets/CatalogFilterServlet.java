@@ -123,6 +123,9 @@ public class CatalogFilterServlet extends HttpServlet {
 
         req.setAttribute("catalog", "kostil");
         req.setAttribute("cars", firstList);
+
+
+
         req.getRequestDispatcher("freemarker/catalog.ftl").forward(req, resp);
     }
 }

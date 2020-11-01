@@ -1,6 +1,6 @@
 package ru.itis.javalab.servlets;
 
-import freemarker.core.JSONOutputFormat;
+import ru.itis.javalab.models.Order;
 import ru.itis.javalab.services.OrderService;
 import ru.itis.javalab.utils.StringDateGenerator;
 
@@ -40,7 +40,11 @@ public class PayOfferServlet extends HttpServlet {
             req.setAttribute("petersburg", "kostil");
         }
 
-        req.setAttribute("order_id", req.getParameter("order_id"));
+        long order_id = Long.parseLong(req.getParameter("order_id"));
+
+        req.setAttribute("order_id", order_id);
+        Order order = orderService.getOrderById(order_id).get();
+        req.setAttribute("sum", order.getPrice());
 
         req.getRequestDispatcher("freemarker/pay_offer.ftl").forward(req, resp);
 

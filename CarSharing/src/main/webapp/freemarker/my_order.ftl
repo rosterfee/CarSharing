@@ -35,7 +35,6 @@
         </select>
         <input hidden name="order_id" value="${order.id}">
         <input hidden name="car_price" value="${order.car.price}">
-        <div class="total_price">Итого: <span id="total-cart-summa">0</span> руб.</div>
         <button type="submit" id="order" class="btn btn-info mb-3">Оформить заказ</button>
     </form>
 

@@ -7,10 +7,10 @@
 <body class="bg-info">
 <div class="">
     <form method="post" action="/catalog_filter">
-        <ul class="navbar-nav mr-auto filters">
+        <ul class="navbar-nav mr-auto filters rounded">
             <li class="navbar-brand ml-2">Фильтры:</li>
             <li class="nav-item dropdown mr-2">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle letter" id="navbarDropdown1" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Л.С.
                 </a>
@@ -45,7 +45,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown mr-2">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown3" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle letter" id="navbarDropdown3" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Цена
                 </a>
@@ -74,7 +74,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown mr-2">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown5" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle letter" id="navbarDropdown5" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Марка
                 </a>
@@ -108,7 +108,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown mr-2">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown9" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle letter" id="navbarDropdown9" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Объем двигателя
                 </a>
@@ -135,7 +135,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown mr-2">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown13" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle letter" id="navbarDropdown13" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Коробка передач
                 </a>
@@ -154,8 +154,8 @@
                     </div>
                 </div>
             </li>
+            <button type="submit" class="btn btn-info">Применить</button>
         </ul>
-        <button type="submit" class="btn btn-info">Применить</button>
     </form>
 </div>
 
@@ -186,11 +186,22 @@
         display: flex;
         flex-wrap: wrap;
     }
+
     .filters {
         display: flex;
         flex-direction: row;
+        background-color: lightgray;
+        padding-bottom: 5px;
+        padding-top: 5px;
     }
+
+    .letter {
+        color: black;
+    }
+
 </style>
+
+<script src="../scripts/ajax_script.js"></script>
 
 </body>
 </@header.main>

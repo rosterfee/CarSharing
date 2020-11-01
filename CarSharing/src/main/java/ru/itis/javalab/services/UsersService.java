@@ -2,7 +2,6 @@ package ru.itis.javalab.services;
 
 import ru.itis.javalab.models.User;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
@@ -22,5 +21,7 @@ public interface UsersService {
     void uploadAvatar(InputStream inputStream, String login);
 
     void updateUser(User entity);
+
+    void setUserCity(String city, long id);
 
 }

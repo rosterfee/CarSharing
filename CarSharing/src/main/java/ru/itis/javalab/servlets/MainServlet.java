@@ -23,7 +23,6 @@ public class MainServlet  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("freemarker/main.ftl").forward(req, resp);
-        System.out.println(req.getAttribute("city"));
     }
 
     @Override

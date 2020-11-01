@@ -27,4 +27,6 @@ public interface CarsRepository extends CrudRepository<Car> {
 
     List<Car> findByBox(String box);
 
+    Optional<Car> findSuchCar(Car car);
+
 }

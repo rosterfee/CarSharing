@@ -21,6 +21,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
             .password(resultSet.getString("password"))
             .avatar(resultSet.getString("avatar"))
             .id(resultSet.getLong("id"))
+            .city(resultSet.getString("city"))
             .build();
 
 
@@ -49,6 +50,9 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     //language=sql
     private static final String SQL_UPDATE_USER = "update account set first_name = ?, last_name = ?," +
             "email = ?, phone = ?, login = ?, password = ? where id = ?";
+
+    //language=sql
+    private static final String SQL_SET_USER_CITY = "update account set city = ? where id = ?";
 
 
 
@@ -108,8 +112,13 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         template.uploadImage(inputStream, SQL_INSERT_AVATAR_TO_USER, login);
     }
 
+    @Override
+    public void setUserCity(String city, long id) {
+        template.update(SQL_SET_USER_CITY, city, id);
+    }
 
-        @Override
+
+    @Override
     public void update(User entity) {
         template.update(SQL_UPDATE_USER, entity.getFirstName(), entity.getLastName(), entity.getEmail(),
                 entity.getPhone(), entity.getLogin(), entity.getPassword(), entity.getId());

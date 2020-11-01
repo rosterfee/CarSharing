@@ -49,10 +49,6 @@ public class SignInServlet extends HttpServlet {
                 Cookie userCookie = new Cookie("usersId", String.valueOf(optionalUser.get().getId()));
                 userCookie.setMaxAge(60 * 60 * 24);
                 resp.addCookie(userCookie);
-
-                Cookie cityCookie = new Cookie("city", null);
-                cityCookie.setMaxAge(60 * 60 * 24);
-                resp.addCookie(cityCookie);
             }
 
             resp.sendRedirect("/main");

@@ -50,5 +50,10 @@ public class UsersServiceImpl implements UsersService {
         usersRepository.update(entity);
     }
 
+    @Override
+    public void setUserCity(String city, long id) {
+        usersRepository.setUserCity(city, id);
+    }
+
 
 }

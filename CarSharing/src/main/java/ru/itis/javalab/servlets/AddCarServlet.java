@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 
 @WebServlet("/add_car")
 @MultipartConfig
@@ -49,14 +50,22 @@ public class AddCarServlet extends HttpServlet {
                 .racing(Double.parseDouble(req.getParameter("racing")))
                 .description(req.getParameter("description"))
                     .build();
-        carsService.save(car);
 
-        car = carsService.getCarByName(car.getMark() + " " + car.getModel()).get();
+        Optional<Car> carFromDb = carsService.getSuchCar(car);
+        if (!carFromDb.isPresent()) {
 
-        InputStream inputStream;
-        for (int i = 1; i < 4; i++) {
-            inputStream = req.getPart("file" + i).getInputStream();
-            carImagesService.save(inputStream, car.getId());
+            carsService.save(car);
+            Car newCar = carsService.getSuchCar(car).get();
+
+            InputStream inputStream;
+            for (int i = 1; i < 4; i++) {
+                inputStream = req.getPart("file" + i).getInputStream();
+                carImagesService.save(inputStream, newCar.getId());
+            }
+
+        }
+        else {
+            req.setAttribute("suchCar","Точно такая же машина уже имеется в каталоге");
         }
 
         doGet(req, resp);

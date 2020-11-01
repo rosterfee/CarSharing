@@ -12,22 +12,11 @@ public class SignOutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-
-        session.removeAttribute("city");
         session.removeAttribute("user");
 
         Cookie[] cookies = req.getCookies();
-
         for (Cookie cookie: cookies) {
             if (cookie.getName().equals("usersId")) {
-                cookie.setMaxAge(0);
-                resp.addCookie(cookie);
-                break;
-            }
-        }
-
-        for (Cookie cookie: cookies) {
-            if (cookie.getName().equals("city")) {
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
                 break;

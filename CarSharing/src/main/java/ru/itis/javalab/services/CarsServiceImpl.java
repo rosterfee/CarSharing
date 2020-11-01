@@ -78,4 +78,9 @@ public class CarsServiceImpl implements CarsService {
     public List<Car> getAllByBox(String box) {
         return carsRepository.findByBox(box);
     }
+
+    @Override
+    public Optional<Car> getSuchCar(Car car) {
+        return carsRepository.findSuchCar(car);
+    }
 }

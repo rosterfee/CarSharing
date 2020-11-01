@@ -63,9 +63,9 @@
         <div class="col-md-12">
             <h2 class="text-center">История заказов</h2>
             <div class="catalog-content">
-                <#list orders as order>
-                <div class="catalog-product">
-                    <div class="card" style="width: 25%">
+                <div class="catalog-product history-list">
+                    <#list orders as order>
+                    <div class="card history-list" style="width: 25%">
                         <a href="/car_profile?car_id=${order.car.id}"><img class="card-img-top" src="${order.car.photos[0].image}"></a>
                         <div class="card-body text-center">
                             ${order.car.mark + " " + order.car.model}
@@ -74,9 +74,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
                     <#else><h5>У вас нет завершенных заказов</h5>
-                </#list>
+                    </#list>
+                </div>
+
             </div>
         </div>
     </div>
@@ -120,6 +121,14 @@
 
     #real-estates-detail .slides li img {
         height: 450px;
+    }
+
+    .history-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 50px;
+        margin-top: 30px;
+        margin-bottom: 40px;
     }
 
 </style>

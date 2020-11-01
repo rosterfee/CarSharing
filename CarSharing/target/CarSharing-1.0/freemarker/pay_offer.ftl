@@ -6,6 +6,7 @@
 <body class="bg-info">
 <div class="container bg-light mt-5 rounded">
     <h2 class="text-center">Оплата</h2>
+    <h4>Итого к оплате: ${sum} руб.</h4>
     <form action="/pay_offer" method="post">
         <label for="date">Выберете дату, когда вы хотите забрать авто</label>
         <input style="width: 200px" type="datetime-local" class="form-control" id="date" name="date" placeholder="Дата"
@@ -65,28 +66,6 @@
                                             <input type="text" class="form-control" placeholder="Name On The Card"/>
                                         </div>
                                     </div>
-
-<#--                                    <div class="row">-->
-<#--                                        <div class="col-md-12 pad-adjust">-->
-<#--                                            <div class="checkbox">-->
-<#--                                                <label>-->
-<#--                                                    <input type="checkbox" checked class="text-muted"> Save details for-->
-<#--                                                    fast-->
-<#--                                                    payments <a href="#"> learn how ?</a>-->
-<#--                                                </label>-->
-<#--                                            </div>-->
-<#--                                        </div>-->
-<#--                                    </div>-->
-
-<#--                                    <div class="row pb-2">-->
-<#--                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">-->
-<#--                                            <input type="submit" class="btn btn-danger" value="CANCEL"/>-->
-<#--                                        </div>-->
-<#--                                        <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">-->
-<#--                                            <input type="submit" class="btn btn-warning btn-block" value="PAY NOW"/>-->
-<#--                                        </div>-->
-<#--                                    </div>-->
-
                                 </div>
                             </div>
                         </div>

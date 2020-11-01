@@ -32,4 +32,6 @@ public interface CarsService {
     List<Car> getAllByEngine(double from);
 
     List<Car> getAllByBox(String box);
+
+    Optional<Car> getSuchCar(Car car);
 }

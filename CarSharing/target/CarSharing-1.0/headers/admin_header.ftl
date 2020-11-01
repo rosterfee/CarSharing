@@ -64,7 +64,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Города
+                    Город
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/choose_city?city=Казань">Казань</a>
@@ -85,8 +85,9 @@
 
         <#if catalog??>
         <form class="form-inline my-2 my-lg-0" method="post" action="/catalog">
-            <input class="form-control mr-sm-2" type="text" placeholder="Введите запрос" aria-label="Search" name="search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Поиск в каталоге..." aria-label="Search"
+                   name="search" id="search">
+            <button id="btn_search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
         </#if>
     </div>

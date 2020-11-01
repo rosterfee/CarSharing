@@ -17,4 +17,6 @@ public interface UsersRepository extends CrudRepository<User> {
     Optional<User> findUserById(long id);
 
     void uploadAvatar(InputStream inputStream, String login);
+
+    void setUserCity(String city, long id);
 }

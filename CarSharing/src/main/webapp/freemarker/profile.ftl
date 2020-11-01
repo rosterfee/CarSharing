@@ -63,9 +63,9 @@
         <div class="col-md-12">
             <h2 class="text-center">История заказов</h2>
             <div class="catalog-content">
-                <#list orders as order>
-                <div class="catalog-product">
-                    <div class="card" style="width: 25%">
+                <div class="catalog-product history-list">
+                    <#list orders as order>
+                    <div class="card history-list" style="width: 25%">
                         <a href="/car_profile?car_id=${order.car.id}"><img class="card-img-top" src="${order.car.photos[0].image}"></a>
                         <div class="card-body text-center">
                             ${order.car.mark + " " + order.car.model}
@@ -74,9 +74,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
                     <#else><h5>У вас нет завершенных заказов</h5>
-                </#list>
+                    </#list>
+                </div>
+
             </div>
         </div>
     </div>
@@ -122,52 +123,15 @@
         height: 450px;
     }
 
+    .history-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 50px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
 </style>
 
-<#--<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>-->
-<#--<script>-->
-<#--    $('#signInForm').validate({-->
-<#--        rules: {-->
-<#--            email: {-->
-<#--                required: true,-->
-<#--                email: true-->
-<#--            },-->
-<#--            password: {-->
-<#--                required: true,-->
-<#--                minlength: 8,-->
-<#--            }-->
-<#--        },-->
-<#--        messages: {-->
-<#--            email: {-->
-<#--                required: 'Заполните поле',-->
-<#--                email: 'Введите корректный email'-->
-<#--            },-->
-<#--            password: {-->
-<#--                required: 'Заполните поле',-->
-<#--                minlength: jQuery.validator.format('Минимальная длинна {0} символов'),-->
-<#--            }-->
-<#--        }-->
-<#--    });-->
-<#--</script>-->
-<#--<script>-->
-<#--    function enableForm() {-->
-<#--        document.getElementById('phone_number').removeAttribute('disabled');-->
-<#--        document.getElementById('name').removeAttribute('disabled');-->
-<#--        document.getElementById('surname').removeAttribute('disabled');-->
-<#--        document.getElementById('email').removeAttribute('disabled');-->
-<#--        document.getElementById('pass1').removeAttribute('disabled');-->
-<#--        document.getElementById('disable_btn').removeAttribute('disabled');-->
-<#--        document.getElementById('enable_btn').setAttribute('disabled', '');-->
-<#--    }-->
-<#--    function disabeleForm() {-->
-<#--        document.getElementById('phone_number').setAttribute('disabled', '');-->
-<#--        document.getElementById('name').setAttribute('disabled', '');-->
-<#--        document.getElementById('surname').setAttribute('disabled', '');-->
-<#--        document.getElementById('email').setAttribute('disabled', '');-->
-<#--        document.getElementById('pass1').setAttribute('disabled', '');-->
-<#--        document.getElementById('enable_btn').removeAttribute('disabled');-->
-<#--        document.getElementById('disable_btn').setAttribute('disabled', '');-->
-<#--    }-->
-<#--</script>-->
 </body>
 </@header.main>
